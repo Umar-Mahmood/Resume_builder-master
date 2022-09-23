@@ -1,0 +1,76 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="container ">
+  <div class="header  bg-primary text-white row">
+    <div class="col-md-1 col-lg-1"></div>
+    <div class="name col-md-5 col-lg-4 p-5">
+      <h1> <%= @resume.first_name %></h1>
+      <h1> <%= @resume.last_name %>  </h1>
+    </div>
+    <div class="contact col-md-2 col-lg-2 p-4">
+      <% if(@resume.picture.attached?) %>
+        <%=  image_tag @resume.picture , class: 'User-image-cv rounded-circle' %>
+      <% end %>
+    </div>
+    <div class="contact text-end col-md-4 col-lg-4 p-4">
+      <div class="Adress"> <p class="fw-bold m-0"> Adress</p> <p class="fw-lighter"><%= @resume.adress %> </p> </div>
+      <div class="phone"> <p class="fw-bold m-0">Phone</p> <p class="fw-lighter"> <%= @resume.phone %> </p></div>
+      <div class="email"> <p class="fw-bold m-0">Email</p> <p class="fw-lighter"><%= @resume.email %></p></div>
+    </div>
+  </div>
+  <div class="body m-5">
+    <div class="summery">
+      <h4 class="fw-bold m-0 mt-2">Summery</h4>
+      <hr class="bg-dark border-2 border-top border-dark m-0 mb-2">
+      <div class="col-md-10 col-lg-10 text-wrap text-break"><%= @resume.discription %></div>
+    </div>
+    <div class="Education">
+      <h4 class="fw-bold m-0 mt-2">Education</h4>
+      <hr class="bg-dark border-2 border-top border-dark m-0 mb-2">
+      <p>
+        <%= render partial: "education", collection: @resume.educations %>
+      </p>
+    </div>
+    <div class="Experience">
+      <h4 class="fw-bold m-0 mt-2">Experiences</h4>
+      <hr class="bg-dark border-2 border-top border-dark m-0 mb-2">
+      <p>
+      <%= render partial: "experience", collection: @resume.experiences %>
+      </p>
+    </div>
+    <%# <div class="certificate">
+      <h4 class="fw-bold m-0 mt-2"> Certificates </h4>
+      <hr class="bg-dark border-2 border-top border-dark m-0 mb-2">
+      <p>
+      </p>
+    </div> %>
+    <div class="skills">
+    <h4 class="fw-bold m-0 mt-2"> Skills </h4>
+      <hr class="bg-dark border-2 border-top border-dark m-0 mb-2">
+      <% skills = @resume.skills.split(',') %>
+      <ul class="row">
+       <% skills.each do |skill|  %>
+        <li class="col-md-5 col-lg-5"><%= skill.upcase %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="language">
+      <h4 class="fw-bold m-0 mt-2">Languages</h4>
+      <hr class="bg-dark border-2 border-top border-dark m-0 mb-2">
+      <p>
+      <%= render partial: "language", collection: @resume.languages %>
+      </p>
+    </div>
+  </div>
+  <div class="header  bg-primary text-white row">
+    <br><br>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_resume_path(@resume) %> |
+<%= link_to 'Back', resumes_path %>
+<%= link_to 'Destroy', @resume, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'DOWNLOAD PDF',  resume_print_resume_path(@resume, format: :pdf) %>
+
+

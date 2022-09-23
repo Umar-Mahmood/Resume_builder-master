@@ -1,0 +1,51 @@
+<%= simple_form_for(@resume) do |form| %>
+  <% if @resume.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@resume.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul>
+          <% @resume.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <div>
+    <%= form.input :picture, as: :file %>
+    <%= form.input :first_name , :input_html => {maxlength: 20, minlength: 3} %>
+    <%= form.input :last_name , required: true, :input_html => {maxlength: 20, minlength: 3} %>
+    <%= form.input :discription,required: true,  :input_html => {maxlength: 500, minlength: 3} %>
+    <%= form.input :phone, required: true, input_html: { type: 'number', maxlength: 15, minlength: 9} %>
+    <%= form.input :adress, required: true, :input_html => {maxlength: 50, minlength: 10} %>
+    <%= form.input :email , required: true, :input_html => {maxlength: 50, minlength: 7} %>
+    <%= form.input :designation, required: true, :input_html => {maxlength: 50, minlength: 2} %>
+    <%= form.input :skills, required: true, :input_html => {maxlength: 50, minlength: 3} %>
+  </div>
+
+  <div class='education'>
+    <h4>Education</h4>
+    <%= form.simple_fields_for :educations do |education| %>
+      <%= render "education_fields", f: education %>
+    <% end %>
+  </div>
+  <%= link_to_add_association 'Add education', form , :educations,class: 'btn', data: {  association_insertion_node: 'div.education' , association_insertion_method: :append } %>
+
+  <div class='experience'>
+    <h4>Experience</h4>
+    <%= form.simple_fields_for :experiences do |experience| %>
+      <%= render "experience_fields", f: experience %>
+    <% end %>
+  </div>
+    <%= link_to_add_association 'Add experience', form , :experiences,class: 'btn', data: {  association_insertion_node: 'div.experience' , association_insertion_method: :append } %>
+
+  <div class='language'>
+    <h4>Language</h4>
+    <%= form.simple_fields_for :languages do |language| %>
+      <%= render "language_fields", f: language %>
+    <% end %>
+  </div>
+  <%= link_to_add_association 'Add Language', form , :languages,class: 'btn', data: {  association_insertion_node: 'div.language' , association_insertion_method: :append } %>
+
+  <div>
+    <%= form.button :submit%>
+  </div>
+<% end %>

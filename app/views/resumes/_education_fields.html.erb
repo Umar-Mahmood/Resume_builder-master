@@ -1,0 +1,8 @@
+<div class='nested-fields'>
+  <%= f.input :degree,required: false %>
+  <%= f.input :institute, required: false %>
+  <%= f.input :major_subjects, required: false %>
+  <%= f.input :sart_date , required: false, :input_html => { :class => 'date' }  %>
+  <%= f.input :end_date , required: false, :input_html => { :class => 'date' }  %>
+  <%= link_to_remove_association 'Remove Education', f %>
+</div>

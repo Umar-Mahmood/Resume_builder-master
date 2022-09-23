@@ -1,0 +1,8 @@
+<p> <strong>Degree</strong> : <%= education.degree %></p>
+<ul>
+<li class="m-0">Institute : <%= education.institute %></li>
+<li class="m-0">Major subjects : <%= education.major_subjects %></li>
+<li class="m-0">Started on : <%= education.sart_date %></li>
+<li class="m-0">Ended on : <%= education.end_date %></li>
+<li class="m-0 mb-3">Total Duration : <%= distance_of_time_in_words(education.end_date , education.sart_date) %></li>
+</ul>

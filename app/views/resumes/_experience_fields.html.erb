@@ -1,0 +1,7 @@
+<div class='nested-fields'>
+  <%= f.input :title,required: false %>
+  <%= f.input :skills, required: false %>
+  <%= f.input :sart_date , required: false, :input_html => { :class => 'date' }  %>
+  <%= f.input :end_date , required: false, :input_html => { :class => 'date' }  %>
+  <%= link_to_remove_association 'Remove experience', f %>
+</div>

@@ -1,0 +1,7 @@
+<p> <strong>Title</strong> : <%= experience.title %></p>
+<ul>
+<li class="m-0">Skills : <%= experience.skills %></li>
+<li class="m-0">Started on : <%= experience.sart_date %></li>
+<li class="m-0">Ended on : <%= experience.end_date %></li>
+<li class="m-0 mb-3">Experience Time : <%= distance_of_time_in_words(experience.end_date , experience.sart_date) %></li>
+</ul>

@@ -1,0 +1,5 @@
+<div class='nested-fields'>
+  <%= f.input :language,required: false %>
+  <%= f.input :level, :collection => %w[biggner intermidiate professional native] %>
+  <%= link_to_remove_association 'Remove Language', f %>
+</div>
